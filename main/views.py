@@ -1,6 +1,7 @@
 from django.contrib import auth
 from django.shortcuts import redirect, render
-from .forms import SignUpForm
+from django.contrib.auth import views as auth_views
+from .forms import LoginForm, SignUpForm
 
 def index(request):
     return render(request, 'main/index.html')
@@ -27,5 +28,11 @@ def signup(request):
     context = {"form": form}
     return render(request, "main/signup.html", context)
 
-def login(request):
-    return render(request, 'main/login.html')
+#↓27 login関数をLoginViewクラスに差替
+class LoginView(auth_views.LoginView):
+    authentication_form = LoginForm
+    template_name = "main/login.html"
+
+#↓27で追加
+def friends(request):
+    return render(request, "main/friends.html")

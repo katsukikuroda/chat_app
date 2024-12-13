@@ -5,5 +5,8 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('signup/', views.signup, name='signup'),
-    path('login/', views.login, name='login'),
+    #↓27で書き換え
+    path("login/", views.LoginView.as_view(), name="login"), 
+    #↓27で追加
+     path("friends/", views.friends, name="friends"),
 ]

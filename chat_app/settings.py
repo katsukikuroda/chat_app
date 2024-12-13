@@ -112,3 +112,8 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "main.User"
+
+# ↓27で追加
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "friends"
+LOGOUT_REDIRECT_URL = "index"
