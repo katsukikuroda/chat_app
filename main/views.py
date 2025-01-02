@@ -2,6 +2,8 @@ from django.contrib import auth
 from django.shortcuts import redirect, render
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, SignUpForm
+from .models import User
+from django.contrib.auth.decorators import login_required 
 
 def index(request):
     return render(request, 'main/index.html')
@@ -33,6 +35,16 @@ class LoginView(auth_views.LoginView):
     authentication_form = LoginForm
     template_name = "main/login.html"
 
-#↓27で追加
+#↓27で追加 28で変更
+@login_required
 def friends(request):
-    return render(request, "main/friends.html")
+    friends = User.objects.exclude(id=request.user.id)
+    # friends = User.objects.all()
+    print(friends)
+    context = {"friends": friends}
+    return render(request, "main/friends.html", context)
+
+#↓28で追加
+@login_required
+def settings(request):
+    return render(request, "main/settings.html")
