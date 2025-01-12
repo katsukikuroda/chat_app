@@ -1,9 +1,10 @@
 from django.contrib import auth
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth import views as auth_views
 from .forms import LoginForm, SignUpForm
-from .models import User
+from .models import Talk, User
 from django.contrib.auth.decorators import login_required 
+from django.db.models import Q
 
 def index(request):
     return render(request, 'main/index.html')
@@ -48,3 +49,18 @@ def friends(request):
 @login_required
 def settings(request):
     return render(request, "main/settings.html")
+
+#↓29で追加
+@login_required
+def talk_room(request, user_id):
+    friend = get_object_or_404(User, id=user_id)
+    talks = Talk.objects.filter(
+        Q(sender=request.user, receiver=friend)
+        | Q(sender=friend, receiver=request.user)
+    ).order_by("time")
+
+    context = {
+        "friend": friend,
+        "talks": talks,
+    }
+    return render(request, "main/talk_room.html", context)

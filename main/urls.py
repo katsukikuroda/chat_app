@@ -8,7 +8,9 @@ urlpatterns = [
     #↓27で書き換え
     path("login/", views.LoginView.as_view(), name="login"), 
     #↓27で追加
-     path("friends/", views.friends, name="friends"),
+    path("friends/", views.friends, name="friends"),
     #↓28で追加
-     path("settings/", views.settings, name="settings"),
+    path("settings/", views.settings, name="settings"),
+    #↓29で追加
+    path("talk_room/<user_id>", views.talk_room, name="talk_room"),
 ]
