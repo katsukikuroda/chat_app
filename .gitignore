@@ -1,11 +1,8 @@
 # Python関連
 *.pyc
 *.pyo
-main/__pycache__/
+/__pycache__/
 .venv/
-
-# migrationsフォルダはpush
-!main/migrations/__pycache__/
 
 # OS関連
 .DS_Store
