@@ -40,7 +40,6 @@ class LoginView(auth_views.LoginView):
 def friends(request):
     friends = User.objects.exclude(id=request.user.id)
     # friends = User.objects.all()
-    print(friends)
     context = {"friends": friends}
     return render(request, "main/friends.html", context)
 
