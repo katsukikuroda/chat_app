@@ -4,5 +4,8 @@
 main/__pycache__/
 .venv/
 
+# migrationsフォルダはpush
+!main/migrations/__pycache__/
+
 # OS関連
 .DS_Store
