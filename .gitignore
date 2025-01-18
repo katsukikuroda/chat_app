@@ -1,11 +1,8 @@
 # Python関連
 *.pyc
 *.pyo
-__pycache__/
+main/__pycache__/
 .venv/
-
-# Django migrations
-*/migrations/
 
 # OS関連
 .DS_Store
